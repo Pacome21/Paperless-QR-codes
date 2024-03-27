@@ -1,10 +1,13 @@
-import AveryLabels
+import AveryLabels, ConfigManagement
 from reportlab.lib.units import mm, cm
 from reportlab_qrcode import QRCodeImage
 
 
 
-startASN = 60
+
+
+
+
 
 def render(c,x,y):
     global startASN
@@ -20,7 +23,11 @@ def render(c,x,y):
     print(y)
 
 
-label = AveryLabels.AveryLabel(6121)
-label.open( "labels6121.pdf" )
-label.render(render, 65 )
-label.close()
+if __name__ == "__main__":
+    startASN = ConfigManagement.load_asn()
+    label = AveryLabels.AveryLabel(6121)
+    fname = ConfigManagement.get_output_file_path(6121, startASN)
+    label.open( fname )
+    label.render(render, 65 )
+    label.close()
+    ConfigManagement.save_asn(startASN)
