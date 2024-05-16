@@ -37,7 +37,9 @@ labelInfo = {
     5167: ( 4, 20, (126,  36), (0, 0), (54, 36)),
     # 3.5 x 2 business cards
     5371: ( 2,  5, (252, 144), (0, 0), (54, 36)),
-    6121: ( 5,  13, (38*mm, 21*mm), (0.0*cm, 0.02*cm), (1*cm, 1*cm)),
+    #6121: ( 5,  13, (38*mm, 21*mm), (0.0*cm, 0.02*cm), (1*cm, 1*cm)),
+    6121: ( 5,  13, (38*mm, 21*mm), (0.0*cm, 0.0*cm), (1*cm, 1.1*cm)),
+    # margin : (left, top)
 }
 
 RETURN_ADDRESS = 5167
@@ -57,6 +59,17 @@ class AveryLabel:
         self.pagesize = A4
         self.position = 0
         self.__dict__.update(kwargs)
+        print(f"1 mm = {mm} px")
+        print(f"across = {self.across} px")
+        print(f"down = {self.down} px")
+        print(f"size = {self.size} px")
+        print(f"labelsep = {self.labelsep} px")
+        print(f"margins = {self.margins} px")
+        print(f"across = {self.across/mm} mm")
+        print(f"down = {self.down/mm} mm")
+        print(f"size = {self.size[0]/mm, self.size[1]/mm} mm")
+        print(f"labelsep = {self.labelsep[0]/mm, self.labelsep[1]/mm} mm")
+        print(f"margins = {self.margins[0]/mm, self.margins[1]/mm} mm")
 
     def open(self, filename):
         self.canvas = canvas.Canvas( filename, pagesize=self.pagesize )
