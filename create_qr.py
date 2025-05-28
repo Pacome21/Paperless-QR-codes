@@ -1,13 +1,10 @@
-import AveryLabels, ConfigManagement
+"""
+This module creates QR codes for ASN labels using the ReportLab library.
+"""
 from reportlab.lib.units import mm, cm
 from reportlab_qrcode import QRCodeImage
-
-
-
-
-
-
-
+import avery_labels
+import config_mangement
 
 def render(c,x,y):
     global startASN
@@ -25,10 +22,10 @@ def render(c,x,y):
 
 
 if __name__ == "__main__":
-    startASN = ConfigManagement.load_asn()
-    label = AveryLabels.AveryLabel(6121)
-    fname = ConfigManagement.get_output_file_path(6121, startASN)
+    startASN = config_mangement.load_asn()
+    label = avery_labels.AveryLabel(6121)
+    fname = config_mangement.get_output_file_path(6121, startASN)
     label.open( fname )
     label.render(render, 65 )
     label.close()
-    ConfigManagement.save_asn(startASN)
+    config_mangement.save_asn(startASN)

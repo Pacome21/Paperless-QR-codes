@@ -1,10 +1,11 @@
-import os
+"""
+# avery_labels.py
+"""
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4, landscape
+from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm, cm
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
+
 
 # pip install reportlab 
 # pip install reportlab_qrcode
@@ -38,7 +39,8 @@ labelInfo = {
     # 3.5 x 2 business cards
     5371: ( 2,  5, (252, 144), (0, 0), (54, 36)),
     #6121: ( 5,  13, (38*mm, 21*mm), (0.0*cm, 0.02*cm), (1*cm, 1*cm)),
-    6121: ( 5,  13, (38*mm, 21*mm), (0.0*cm, 0.0*cm), (1*cm, 1.1*cm)),
+    # used for my HP printer 6121: ( 5,  13, (38*mm, 21*mm), (0.0*cm, 0.0*cm), (1*cm, 1.1*cm)),
+    6121: ( 5,  13, (38*mm, 21*mm), (1.50*mm, 1.0*mm), (8*mm, 5*mm)),
     # margin : (left, top)
 }
 

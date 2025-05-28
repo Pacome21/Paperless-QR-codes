@@ -1,3 +1,7 @@
+"""
+This module handles the configuration management for ASN numbers.
+It allows loading, saving, and updating ASN numbers in a configuration file.
+"""
 import configparser
 import os
 from pathlib import Path
@@ -26,6 +30,9 @@ os.makedirs(os.path.dirname(config_path), exist_ok=True)
 config = configparser.ConfigParser()
 
 def load_asn():
+    """
+    Load the ASN number from the config file. If it doesn't exist, prompt the user to set it.
+    """
     # Check if the config file exists
     if config_path.exists():
         # Read the ASN number from the config file
@@ -43,12 +50,14 @@ def load_asn():
             return -1
 
 def save_asn(asn_number):
+    """    Save the ASN number to the config file."""
     # Update the ASN number in the config file
     config['StartASN']['asn'] = str(asn_number)
     with open(config_path, 'w') as configfile:
         config.write(configfile)
-        
+
 def get_output_file_path(label_type, asn):
+    """Generate the output file path for the label PDF."""
     downloads_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
     fname = "labels-{0}-{1}.pdf".format(label_type, asn)
     file_path = os.path.join(downloads_dir, fname)
